@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import MasonryInfiniteScroller from 'react-masonry-infinite'
 import './App.css'
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
-import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import { createMuiTheme } from 'material-ui/styles';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card'
+import Button from 'material-ui/Button'
+import Typography from 'material-ui/Typography'
+import AppBar from 'material-ui/AppBar'
+import Toolbar from 'material-ui/Toolbar'
+import { createMuiTheme } from 'material-ui/styles'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import Input, { InputLabel } from 'material-ui/Input'
+import { MenuItem } from 'material-ui/Menu'
+import { FormControl, FormHelperText } from 'material-ui/Form'
+import Select from 'material-ui/Select'
 
 const theme = createMuiTheme({
   palette: {
@@ -32,7 +36,10 @@ class App extends Component {
 		super(props)
 		this.state = {
       elements: [],
-      firstID: []
+      firstID: [],
+      plottype: '',
+      channel: '',
+      observable: ''
     }
 	}
 
@@ -63,17 +70,77 @@ class App extends Component {
     }
   }
 
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
   render() {
     if ((this.state.elements.length > 0) || (this.state.firstID.length > 0)) {
       return (
         <MuiThemeProvider theme={theme}>
           <div className="App">
             <div>
-              <AppBar position="static">
+              <AppBar position="static" className="MuiPaper-elevation2-13">
                 <Toolbar>
                   <Typography variant="title" color="inherit">
-                    NNLO-law-Plots
+                    NNLO-Plots
                   </Typography>
+                  <form autoComplete="off" style = {{display: 'flex', flexWrap: 'wrap', padding: '10px', paddingBottom: '25px'}}>
+                    <FormControl style = {{margin: theme.spacing.unit, minWidth: 120}}>
+                      <InputLabel htmlFor="plottype-simple">PlotType</InputLabel>
+                      <Select
+                        value={this.state.plottype}
+                        onChange={this.handleChange}
+                        inputProps={{
+                          name: 'plottype',
+                          id: 'plottype-simple',
+                        }}
+                      >
+                      <MenuItem value="">
+                        <em>None</em>
+                       </MenuItem>
+                       <MenuItem value={10}>Ten</MenuItem>
+                       <MenuItem value={20}>Twenty</MenuItem>
+                       <MenuItem value={30}>Thirty</MenuItem>
+                      </Select>
+                    </FormControl>
+                    <FormControl style = {{margin: theme.spacing.unit, minWidth: 120}}>
+                      <InputLabel htmlFor="channel-simple">Channel</InputLabel>
+                      <Select
+                        value={this.state.channel}
+                        onChange={this.handleChange}
+                        inputProps={{
+                          name: 'channel',
+                          id: 'channel-simple',
+                        }}
+                      >
+                      <MenuItem value="">
+                        <em>None</em>
+                       </MenuItem>
+                       <MenuItem value={10}>Ten</MenuItem>
+                       <MenuItem value={20}>Twenty</MenuItem>
+                       <MenuItem value={30}>Thirty</MenuItem>
+                      </Select>
+                    </FormControl>
+                    <FormControl style = {{margin: theme.spacing.unit, minWidth: 120}}>
+                      <InputLabel htmlFor="observable-simple">Observable</InputLabel>
+                      <Select
+                        value={this.state.observable}
+                        onChange={this.handleChange}
+                        inputProps={{
+                          name: 'observable',
+                          id: 'observable-simple',
+                        }}
+                      >
+                      <MenuItem value="">
+                        <em>None</em>
+                       </MenuItem>
+                       <MenuItem value={10}>Ten</MenuItem>
+                       <MenuItem value={20}>Twenty</MenuItem>
+                       <MenuItem value={30}>Thirty</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </form>
                 </Toolbar>
               </AppBar>
             </div>
@@ -85,9 +152,9 @@ class App extends Component {
             >
             {
               this.state.elements.map((name, index) =>
-              <div className = 'test'>
-                <Card>
-                  <img src={name.src} alt = '' key = {index} style={{width: '100%'}}/>
+              <div className = 'test' key = {index}>
+                <Card style={{padding: '20px', boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)'}}>
+                  <img src={name.src} alt = '' style={{width: '100%'}}/>
                 </Card>
               </div>
               )
