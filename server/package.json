@@ -1,5 +1,5 @@
 {
-  "name": "battleofcuteness-server",
+  "name": "nnlo-law-server",
   "version": "0.1.0",
   "scripts": {
     "start": "node ./bin/www"

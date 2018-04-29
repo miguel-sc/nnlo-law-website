@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  background-color: #fcfcfc;
 }
 
 .App-logo {
@@ -25,4 +25,20 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.test {
+  width: calc(100vw - 20px);
+}
+
+@media (min-width: 768px) {
+  .test {
+    width: calc(50vw - 15px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .test {
+    width: calc(33.3vw - 13.3px);
+  }
 }

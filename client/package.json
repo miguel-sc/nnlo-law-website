@@ -1,7 +1,8 @@
 {
-  "name": "battleofcuteness-client",
+  "name": "nnlo-law-client",
   "version": "0.1.0",
   "dependencies": {
+    "material-ui": "^1.0.0-beta.43",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-masonry-infinite": "^1.2.2",
