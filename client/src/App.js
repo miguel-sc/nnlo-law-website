@@ -79,8 +79,7 @@ class App extends Component {
       return (
         <MuiThemeProvider theme={theme}>
           <div className="App">
-            <div>
-              <AppBar position="static" className="MuiPaper-elevation2-13">
+              <AppBar position="static" style={{position: 'relative', zIndex: '1'}}>
                 <Toolbar>
                   <Typography variant="title" color="inherit">
                     NNLO-Plots
@@ -143,7 +142,6 @@ class App extends Component {
                   </form>
                 </Toolbar>
               </AppBar>
-            </div>
             <div style = {{display: 'flex', justifyContent: 'center', padding: '10px'}}>
             <MasonryInfiniteScroller
               hasMore={true}
@@ -153,7 +151,7 @@ class App extends Component {
             {
               this.state.elements.map((name, index) =>
               <div className = 'test' key = {index}>
-                <Card style={{padding: '20px', boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)'}}>
+                <Card className = 'card' style={{padding: '20px'}}>
                   <img src={name.src} alt = '' style={{width: '100%'}}/>
                 </Card>
               </div>
