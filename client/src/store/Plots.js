@@ -1,6 +1,6 @@
 const FETCH = 'Plots/FETCH'
 
-const Plots = (state = {}, action = {}) => {
+const Plots = (state = [], action = {}) => {
   switch(action.type) {
     case FETCH:
       return action.payload.names

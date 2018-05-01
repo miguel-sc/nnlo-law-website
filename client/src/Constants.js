@@ -6,7 +6,7 @@ export const filterList = [
   {
     name: 'Channel',
     subIndex: 6
-  }
+  },
   {
     name: 'Observable',
     subIndex: 7
