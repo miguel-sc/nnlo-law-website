@@ -13,6 +13,10 @@ import { MenuItem } from 'material-ui/Menu'
 import { FormControl, FormHelperText } from 'material-ui/Form'
 import Select from 'material-ui/Select'
 import { getFilteredPlots } from './selectors'
+import { fetchPlots } from './store/Plots'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import FilterBar from './components/FilterBar'
 
 const theme = createMuiTheme({
   palette: {
@@ -31,6 +35,18 @@ const theme = createMuiTheme({
   },
 });
 
+const mapStateToProps = (state) => {
+  return {
+    filteredPlots: getFilteredPlots(state)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    fetchPlots: fetchPlots
+  }, dispatch)
+}
+
 class App extends Component {
 
   constructor(props) {
@@ -45,6 +61,7 @@ class App extends Component {
 	}
 
   componentDidMount() {
+    this.props.fetchPlots()
     fetch('/plots')
       .then(res => res.json())
       .then(plots => this.setState({ firstID: plots.names }))
@@ -85,62 +102,7 @@ class App extends Component {
                   <Typography variant="title" color="inherit">
                     NNLO-Plots
                   </Typography>
-                  <form autoComplete="off" style = {{display: 'flex', flexWrap: 'wrap', padding: '10px', paddingBottom: '25px'}}>
-                    <FormControl style = {{margin: theme.spacing.unit, minWidth: 120}}>
-                      <InputLabel htmlFor="plottype-simple">PlotType</InputLabel>
-                      <Select
-                        value={this.state.plottype}
-                        onChange={this.handleChange}
-                        inputProps={{
-                          name: 'plottype',
-                          id: 'plottype-simple',
-                        }}
-                      >
-                      <MenuItem value="">
-                        <em>None</em>
-                       </MenuItem>
-                       <MenuItem value={10}>Ten</MenuItem>
-                       <MenuItem value={20}>Twenty</MenuItem>
-                       <MenuItem value={30}>Thirty</MenuItem>
-                      </Select>
-                    </FormControl>
-                    <FormControl style = {{margin: theme.spacing.unit, minWidth: 120}}>
-                      <InputLabel htmlFor="channel-simple">Channel</InputLabel>
-                      <Select
-                        value={this.state.channel}
-                        onChange={this.handleChange}
-                        inputProps={{
-                          name: 'channel',
-                          id: 'channel-simple',
-                        }}
-                      >
-                      <MenuItem value="">
-                        <em>None</em>
-                       </MenuItem>
-                       <MenuItem value={10}>Ten</MenuItem>
-                       <MenuItem value={20}>Twenty</MenuItem>
-                       <MenuItem value={30}>Thirty</MenuItem>
-                      </Select>
-                    </FormControl>
-                    <FormControl style = {{margin: theme.spacing.unit, minWidth: 120}}>
-                      <InputLabel htmlFor="observable-simple">Observable</InputLabel>
-                      <Select
-                        value={this.state.observable}
-                        onChange={this.handleChange}
-                        inputProps={{
-                          name: 'observable',
-                          id: 'observable-simple',
-                        }}
-                      >
-                      <MenuItem value="">
-                        <em>None</em>
-                       </MenuItem>
-                       <MenuItem value={10}>Ten</MenuItem>
-                       <MenuItem value={20}>Twenty</MenuItem>
-                       <MenuItem value={30}>Thirty</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </form>
+                  <FilterBar/>
                 </Toolbar>
               </AppBar>
             <div style = {{display: 'flex', justifyContent: 'center', padding: '10px'}}>
@@ -173,4 +135,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default connect(mapStateToProps, mapDispatchToProps)(App)

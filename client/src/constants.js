@@ -1,14 +1,14 @@
 export const filterList = [
   {
     name: 'PlotType',
-    subIndex: 5
+    subIndex: 2
   },
   {
     name: 'Channel',
-    subIndex: 6
+    subIndex: 3
   },
   {
     name: 'Observable',
-    subIndex: 7
+    subIndex: 4
   }
 ]

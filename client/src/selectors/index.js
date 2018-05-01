@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { filterList } from './../Constants'
+import { filterList } from './../constants'
 
 const getPlots = (state) => state.Plots
 const getFilters = (state) => state.Filters
