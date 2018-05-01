@@ -13,8 +13,8 @@ export const getFilteredPlots = createSelector(
         let subIndex = filterList[f].subIndex
         let tempPlots = []
         for (let p = 0; p < filteredPlots.length; p++) {
-          if (plots[p].split('/')[subIndex] === filters[f]) {
-            tempPlots.push(plots[p])
+          if (filteredPlots[p].split('/')[subIndex] === filters[f]) {
+            tempPlots.push(filteredPlots[p])
           }
         }
         filteredPlots = tempPlots
