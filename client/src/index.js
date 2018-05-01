@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import './index.css'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
-import reducer from './store/Imgur'
+import reducer from './store/Store'
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore)
 
