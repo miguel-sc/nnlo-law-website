@@ -5,6 +5,7 @@ import PlotMasonryItem from './PlotMasonryItem'
 import { getFilteredPlots } from './../selectors'
 import MasonryInfiniteScroller from 'react-masonry-infinite'
 import { addPlot } from './../store/MasonryPlots'
+import PlotLightbox from './PlotLightbox'
 
 const mapStateToProps = (state) => {
   return {
@@ -53,10 +54,11 @@ class PlotMasonry extends Component {
           >
           {
             this.props.MasonryPlots.map((name, index) =>
-            <PlotMasonryItem key = { index } asdf = { name }/>
+            <PlotMasonryItem key = { index } src = { name } plotIndex = { index }/>
             )
           }
           </MasonryInfiniteScroller>
+          <PlotLightbox/>
         </div>
       )
     } else {
