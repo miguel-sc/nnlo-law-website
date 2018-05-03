@@ -31,7 +31,7 @@ class PlotMasonry extends Component {
 	}
 
   loadImg(img) {
-    this.props.addPlot(img.path[0].src)
+    this.props.addPlot(this.props.filteredPlots[this.props.MasonryPlots.length])
     this.setState({loadMore: true})
   }
 
