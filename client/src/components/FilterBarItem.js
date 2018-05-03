@@ -9,6 +9,7 @@ import { InputLabel } from 'material-ui/Input'
 import { MenuItem } from 'material-ui/Menu'
 import Select from 'material-ui/Select'
 import { theme } from './../constants'
+import styled from 'styled-components'
 
 const mapStateToProps = (state) => {
   return {
@@ -31,7 +32,7 @@ class FilterBarItem extends Component {
 
   render() {
     return (
-      <FormControl style = {{margin: theme.spacing.unit, minWidth: 120}}>
+      <StyledFormControl>
         <InputLabel>{ filterList[this.props.barIndex].name }</InputLabel>
         <Select
           value={this.props.filters[this.props.barIndex]}
@@ -46,9 +47,14 @@ class FilterBarItem extends Component {
           )
         }
         </Select>
-      </FormControl>
+      </StyledFormControl>
     )
   }
 }
+
+const StyledFormControl = styled(FormControl)`
+  margin: ${ theme.spacing.unit }px !important;
+  min-width: 120px !important;
+`
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterBarItem)

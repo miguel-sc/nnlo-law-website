@@ -6,6 +6,7 @@ import { getFilteredPlots } from './../selectors'
 import MasonryInfiniteScroller from 'react-masonry-infinite'
 import { addPlot } from './../store/MasonryPlots'
 import PlotLightbox from './PlotLightbox'
+import styled from 'styled-components'
 
 const mapStateToProps = (state) => {
   return {
@@ -46,11 +47,15 @@ class PlotMasonry extends Component {
   render() {
     if (this.props.MasonryPlots.length > 0) {
       return (
-        <div style = {{display: 'flex', justifyContent: 'center', padding: '10px'}}>
+        <MasonryContainer>
           <MasonryInfiniteScroller
             hasMore={true}
             loadMore={()=>this.loadelements()}
-            sizes={[{ columns: 1, gutter: 10 }, { mq: '768px', columns: 2, gutter: 10 }, { mq: '1024px', columns: 3, gutter: 10 }]}
+            sizes={[
+              { columns: 1, gutter: 10 },
+              { mq: '768px', columns: 2, gutter: 10 },
+              { mq: '1024px', columns: 3, gutter: 10 }
+            ]}
           >
           {
             this.props.MasonryPlots.map((name, index) =>
@@ -59,7 +64,7 @@ class PlotMasonry extends Component {
           }
           </MasonryInfiniteScroller>
           <PlotLightbox/>
-        </div>
+        </MasonryContainer>
       )
     } else {
       this.loadelements()
@@ -69,5 +74,11 @@ class PlotMasonry extends Component {
     }
   }
 }
+
+const MasonryContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+`
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlotMasonry)
