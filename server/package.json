@@ -2,7 +2,8 @@
   "name": "nnlo-law-server",
   "version": "0.1.0",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "NODE_ENV=development node ./bin/www",
+    "production": "NODE_ENV=production node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
