@@ -36,4 +36,4 @@ export const theme = createMuiTheme({
   },
 })
 
-export const serverAdress = 'http://localhost:3001'
+export const serverAdress = 'http://localhost:3001/'
