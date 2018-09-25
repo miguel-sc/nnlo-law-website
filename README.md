@@ -33,6 +33,10 @@ Add your png images to this directory with the following naming scheme:
 ```
 process/plottype/channel/observable/name.png
 ```
+The default naming scheme can be changed and is defined inside:
+```
+client/src/constants.js
+```
 
 ## Compiles and minifies for production
 
