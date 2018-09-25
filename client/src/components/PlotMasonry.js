@@ -7,6 +7,7 @@ import MasonryInfiniteScroller from 'react-masonry-infinite'
 import { addPlot } from './../store/MasonryPlots'
 import PlotLightbox from './PlotLightbox'
 import styled from 'styled-components'
+import { serverAdress } from './../constants'
 
 const mapStateToProps = (state) => {
   return {
@@ -39,7 +40,7 @@ class PlotMasonry extends Component {
     if ((this.props.MasonryPlots.length < this.props.filteredPlots.length) && (this.state.loadMore)) {
       this.setState({loadMore: false})
       var img = new Image()
-      img.src = this.props.filteredPlots[this.props.MasonryPlots.length]
+      img.src = serverAdress + this.props.filteredPlots[this.props.MasonryPlots.length]
       img.onload = (img) => this.loadImg(img)
     }
   }
@@ -59,7 +60,7 @@ class PlotMasonry extends Component {
           >
           {
             this.props.MasonryPlots.map((name, index) =>
-            <PlotMasonryItem key = { index } src = { name } plotIndex = { index }/>
+            <PlotMasonryItem key = { index } src = { serverAdress + name } plotIndex = { index }/>
             )
           }
           </MasonryInfiniteScroller>

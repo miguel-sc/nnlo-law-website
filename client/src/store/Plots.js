@@ -1,3 +1,5 @@
+import { serverAdress } from './../constants'
+
 const FETCH = 'Plots/FETCH'
 
 const Plots = (state = [], action = {}) => {
@@ -9,7 +11,7 @@ const Plots = (state = [], action = {}) => {
 }
 
 export const fetchPlots = () => {
-  const plots = fetch('/plots').then(res => res.json())
+  const plots = fetch(serverAdress + 'plots/').then(res => res.json())
   return {
     type: FETCH,
     payload: plots

@@ -2,6 +2,10 @@ import { createMuiTheme } from 'material-ui/styles'
 
 export const filterList = [
   {
+    name: 'Process',
+    subIndex: 1
+  },
+  {
     name: 'PlotType',
     subIndex: 2
   },
@@ -31,3 +35,5 @@ export const theme = createMuiTheme({
     },
   },
 })
+
+export const serverAdress = 'http://localhost:3001'

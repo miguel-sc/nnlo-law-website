@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Lightbox from 'react-images'
 import { getFilteredPlots } from './../selectors'
 import { gotoPreviousPlot, gotoNextPlot, closeLightbox } from './../store/LightboxState'
+import { serverAdress } from './../constants'
 
 const mapStateToProps = (state) => {
   return {
@@ -25,7 +26,7 @@ class PlotLightbox extends Component {
   render() {
     return (
       <Lightbox
-        images={this.props.filteredPlots.map((plot) => {return {src: plot}})}
+        images={this.props.filteredPlots.map((plot) => {return {src: serverAdress + plot}})}
         isOpen={this.props.LightboxState.isOpen}
         currentImage={this.props.LightboxState.currentPlot}
         onClickPrev={this.props.gotoPreviousPlot}
